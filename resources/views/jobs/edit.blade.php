@@ -4,18 +4,19 @@
         <x-card class=" p-10 max-w-3xl mx-auto mt-24 bg-formbg text-white opacity-80">
             <header class="text-center">
                 <h2 class="text-2xl font-bold uppercase mb-1">
-                    Create a Gig
+                    Edit a Gig
                 </h2>
-                <p class="mb-4">Post a gig to find a developer</p>
+                <p class="mb-4">Edit: {{ $job->title }}</p>
             </header>
 
-            <form method="POST" action="/jobs" enctype="multipart/form-data">
+            <form method="POST" action="/jobs/{{ $job->id }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div class="mb-6">
                         <label for="company" class="inline-block text-lg mb-2">Company Name</label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950"
-                            name="company" placeholder="Example: Facebook, Microsoft..." value="{{ old('company') }}" />
+                            name="company" placeholder="Example: Facebook, Microsoft..." value="{{ $job->company }}" />
                         @error('company')
                             <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                         @enderror
@@ -25,7 +26,7 @@
                         <label for="title" class="inline-block text-lg mb-2">Job Title</label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950"
                             name="title" placeholder="Example: Senior Laravel Developer"
-                            value="{{ old('title') }}" />
+                            value="{{ $job->title }}" />
                         @error('title')
                             <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                         @enderror
@@ -35,7 +36,7 @@
                         <label for="location" class="inline-block text-lg mb-2">Job Location</label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950"
                             name="location" placeholder="Example: Remote, Boston MA, etc"
-                            value="{{ old('location') }}" />
+                            value="{{ $job->location }}" />
                         @error('location')
                             <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                         @enderror
@@ -44,7 +45,7 @@
                     <div class="mb-6">
                         <label for="email" class="inline-block text-lg mb-2">Contact Email</label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950"
-                            name="email" placeholder="Example: test@gmail.com" value="{{ old('email') }}" />
+                            name="email" placeholder="Example: test@gmail.com" value="{{ $job->email }}" />
                         @error('email')
                             <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                         @enderror
@@ -55,7 +56,7 @@
                             Website/Application URL
                         </label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950"
-                            name="website" placeholder="Example: tcodertech.com" value="{{ old('website') }}" />
+                            name="website" placeholder="Example: tcodertech.com" value="{{ $job->website }}" />
                         @error('website')
                             <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                         @enderror
@@ -67,7 +68,7 @@
                         </label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950"
                             name="tags" placeholder="Example: Laravel, Backend, Postgres, etc"
-                            value="{{ old('tags') }}" />
+                            value="{{ $job->tags }}" />
                         @error('tags')
                             <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                         @enderror
@@ -83,6 +84,12 @@
                     @error('picture')
                         <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                     @enderror
+                    <div class="flex justify-center">
+                        <img class="w-full mr-6 mb-6 mt-2"
+                            src="{{ $job->picture ? asset('storage/' . $job->picture) : asset('/images/default.jpg') }}"
+                            alt="" style="max-width:400px;height:200px" />
+                    </div>
+
                 </div>
 
                 <div class="mb-6">
@@ -90,7 +97,7 @@
                         Job Description
                     </label>
                     <textarea class="border border-gray-200 rounded p-2 w-full text-gray-950" name="description" rows="10"
-                        placeholder="Include tasks, requirements, salary, etc">{{ old('description') }}</textarea>
+                        placeholder="Include tasks, requirements, salary, etc">{{ $job->description }}</textarea>
                     @error('description')
                         <p class="text-red-400 text-sm m-1">{{ $message }}</p>
                     @enderror
@@ -99,7 +106,7 @@
                 <div class="mb-6 relative">
                     <button type="submit"
                         class=" md:absolute md:right-1 bg-blue-500 px-8 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                        Create Gig
+                        Upddate Gig
                     </button>
 
                     <a href="/"

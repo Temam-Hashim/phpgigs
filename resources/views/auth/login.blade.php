@@ -8,16 +8,22 @@
                 <p class="mb-4">Log in to post gigs</p>
             </header>
 
-            <form action="">
+            <form action="users/login" method="POST">
+                @csrf
+                @error('email')
+                    <p class="text-white text-md m-3 bg-red-600 text-center rounded p-2">{{ $message }}</p>
+                @enderror
                 <div class="mb-6">
                     <label for="email" class="inline-block text-lg mb-2">Email</label>
-                    <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email" />
+                    <input type="email" class="border border-gray-200 rounded p-2 w-full text-gray-950" name="email"
+                        value="{{ old('email') }}" />
                 </div>
                 <div class="mb-6">
                     <label for="password" class="inline-block text-lg mb-2">
                         Password
                     </label>
-                    <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password" />
+                    <input type="password" class="border border-gray-200 rounded p-2 w-full text-gray-950"
+                        name="password" />
                 </div>
 
                 <div class="relative">

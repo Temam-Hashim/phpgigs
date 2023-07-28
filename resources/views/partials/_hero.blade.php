@@ -12,9 +12,15 @@
                  Find or post PHP jobs & projects
              </p>
              <div>
-                 <a href="/register"
-                     class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:bg-white">Sign
-                     Up to List a Gigs</a>
+                 @auth
+                     <a href="/jobs/create"
+                         class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:bg-white">
+                         Create Your New Gigs</a>
+                 @else
+                     <a href="/register"
+                         class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:bg-white">
+                         Sign Up to List a Gigs</a>
+                 @endauth
              </div>
          </div>
      </section>

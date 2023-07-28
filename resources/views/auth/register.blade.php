@@ -1,37 +1,54 @@
 <x-layout>
     <div class="mx-4" style="background-image:url({{ asset('images/hero.jpg') }})">
-        <x-card class="p-10 max-w-lg mx-auto mt-24 bg-formbg text-white opacity-80">
+        <x-card class="p-10 max-w-xl mx-auto mt-24 bg-formbg text-white opacity-80">
             <header class="text-center">
                 <h2 class="text-2xl font-bold uppercase mb-1">
                     Register
                 </h2>
                 <p class="mb-4">Create an account to post gigs</p>
             </header>
-            <form action="">
-                <div class="grid grid-cols-1 md:grid-cols-2  gap-3">
-                    <div class="mb-6">
-                        <label for="name" class="inline-block text-lg mb-2">
-                            Name
-                        </label>
-                        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="name" />
-                    </div>
-                    <div class="mb-6">
-                        <label for="email" class="inline-block text-lg mb-2">Email</label>
-                        <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email" />
-                    </div>
+            <form method="POST" action="users/register">
+                @csrf
+                {{-- <div class="grid grid-cols-1 md:grid-cols-2  gap-3"> --}}
+                <div class="mb-6">
+                    <label for="name" class="inline-block text-lg mb-2">
+                        Name
+                    </label>
+                    <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950" name="name"
+                        value="{{ old('name') }}" />
+                    @error('name')
+                        <p class="text-red-400 text-sm m-1">{{ $message }}</p>
+                    @enderror
                 </div>
+                <div class="mb-6">
+                    <label for="email" class="inline-block text-lg mb-2">Email</label>
+                    <input type="text" class="border border-gray-200 rounded p-2 w-full text-gray-950" name="email"
+                        value="{{ old('email') }}" />
+                    @error('email')
+                        <p class="text-red-400 text-sm m-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                {{-- </div> --}}
                 <div class="mb-6">
                     <label for="password" class="inline-block text-lg mb-2">
                         Password
                     </label>
-                    <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password" />
+                    <input type="password" class="border border-gray-200 rounded p-2 w-full text-gray-950"
+                        name="password" />
+                    @error('password')
+                        <p class="text-red-400 text-sm m-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
                     <label for="password2" class="inline-block text-lg mb-2">
                         Confirm Password
                     </label>
-                    <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password2" />
+                    <input type="password" class="border border-gray-200 rounded p-2 w-full text-gray-950"
+                        name="password_confirmation" />
+                    @error('password_confirmation')
+                        <p class="text-red-400 text-sm m-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="relative">
                     <button type="submit"

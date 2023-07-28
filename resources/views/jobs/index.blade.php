@@ -14,4 +14,6 @@
         @endunless
 
     </div>
+
+    <div class="pt-6 m-6 mt-10 ">{{ $jobs->links() }}</div>
 </x-layout>

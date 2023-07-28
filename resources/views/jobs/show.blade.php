@@ -8,8 +8,9 @@
         <x-card class="p-10">
             <div class="flex flex-col md:flex-row">
                 <div class="flex flex-col w-full justify-center">
-                    <img class="w-full mr-6 mb-6" src="{{ asset('images/' . $job->picture) }}" alt=""
-                        style="max-width:400px;height:200px" />
+                    <img class="w-full mr-6 mb-6"
+                        src="{{ $job->picture ? asset('storage/' . $job->picture) : asset('/images/default.jpg') }}"
+                        alt="" style="max-width:400px;height:200px" />
 
                     <h3 class="text-xl mb-2">{{ $job->title }}</h3>
                     <div class="text-xl font-bold mb-4">{{ $job->company }}</div>
@@ -46,5 +47,25 @@
                 </div>
             </div>
         </x-card>
+
+        {{-- @auth
+            @if ($job->user_id == auth()->id())
+                <div class="p-5 mt-3 ml-5 mr-3 flex flex-row mt-0">
+                    <a href="/jobs/{{ $job->id }}/edit"
+                        class="bg-cyan-700 text-white px-7 py-2 rounded hover:bg-gray-950 mr-3">
+                        <i class="fa-solid fa-pencil"></i> Edit
+                    </a>
+
+                    <form method="POST" action="/jobs/{{ $job->id }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="bg-red-700 text-white px-7 py-2 rounded hover:bg-gray-950 mr-3">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            @endif
+        @endauth --}}
+
     </div>
 </x-layout>

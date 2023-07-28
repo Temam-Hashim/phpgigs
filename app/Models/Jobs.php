@@ -26,4 +26,9 @@ class Jobs extends Model
         }
     }
 
+    // relationship between user and job
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
 }

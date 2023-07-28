@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Jobs;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
+         User::factory()->create([
+            'name'=>'Super Admin',
+            'email'=>'admin@gmail.com',
+            'role'=>'admin',
+            'password'=>bcrypt('Admin@123')
+        ]);
+        // $user = User::factory()->create([
+        //     'name'=>'John Doe',
+        //     'email'=>'john@gmail.com'
+        // ]);
+        // Jobs::factory(8)->create([
+        //     'user_id'=>$user->id
+        // ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Temam Hashim',
@@ -48,6 +62,6 @@ class DatabaseSeeder extends Seeder
         //                     to achieve similar functionality.'
         // ]);
 
-        Jobs::factory(8)->create();
+
     }
 }

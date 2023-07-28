@@ -33,7 +33,7 @@ class JobsFactory extends Factory
             'tags'=>implode(',',$random_tags),
             'company'=>$this->faker->company(),
             'email'=>$this->faker->companyEmail(),
-            'picture'=>self::returnImg(),
+            // 'picture'=>self::returnImg(),
             'website'=>$this->faker->url(),
             'location'=>$this->faker->city(),
             'description'=>$this->faker->paragraph(8),
@@ -41,9 +41,9 @@ class JobsFactory extends Factory
     }
 
     // custom function
-    public static function returnImg(){
-        $images = ['img1.jpg','img2.jpg','img3.jpg','img4.jpg','img5.jpg','img6.jpg','img7.jpg','img8.jpg','img9.jpg','img10.jpg'];
-        $key = array_rand($images, 1);
-        return $images[$key];
-      }
+    // public static function returnImg(){
+    //     $images = ['img1.jpg','img2.jpg','img3.jpg','img4.jpg','img5.jpg','img6.jpg','img7.jpg','img8.jpg','img9.jpg','img10.jpg'];
+    //     $key = array_rand($images, 1);
+    //     return $images[$key];
+    //   }
 }
