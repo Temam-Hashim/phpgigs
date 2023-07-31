@@ -52,8 +52,25 @@ Route::post('/logout',[AuthController::class,'logout'])->middleware('auth');
 
 // admin page lists
 Route:: get('/admin',[AdminController::class,'showIndex'])->middleware(['auth', 'admin']);
+Route::get('/profile',[AdminController::class,'showProfile'])->middleware((['auth']));
+Route::put('/profile/{user}',[AdminController::class,'updateProfile'])->middleware((['auth']));
 
+//show user tabular
+Route::get('/admin/userLists',[AdminController::class,'showUsers'])->middleware((['auth','admin']));
+// new user form
+Route::get('/admin/userLists/new',[AdminController::class,'addUserForm'])->middleware((['auth','admin']));
+// new user action
+Route::post('/admin/userLists/new',[AdminController::class,'addUserAction'])->middleware((['auth','admin']));
 
+// edit user formt
+Route::get('/admin/{user}/edit',[AdminController::class,'editUserForm'])->middleware((['auth','admin']));
+// edit user form
+Route::put('/admin/{user}/edit',[AdminController::class,'editUserAction'])->middleware((['auth','admin']));
+// delete user form
+Route::delete('/admin/{user}/delete',[AdminController::class,'deleteUserAction'])->middleware((['auth','admin']));
+
+// manage all jobs
+Route::get('/admin/jobLists',[AdminController::class,'manageAllJobs'])->middleware((['auth','admin']));;
 
 // Route::get('/posts', function () {
 //     return response('post routes');

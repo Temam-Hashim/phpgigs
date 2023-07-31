@@ -45,4 +45,17 @@ class User extends Authenticatable
     public function jobs(){
         return $this->hasMany(Jobs::class,'user_id');
     }
+
+
+    public function scopeFilter($query, $filters){
+
+
+        //    search by keyword
+        if($filters['search'] ?? false){
+            $query->where('name','like','%'.request('search').'%')
+            ->orWhere('email','like','%'.request('search').'%')
+            ->orWhere('role','like','%'.request('search').'%');
+
+        }
+    }
 }

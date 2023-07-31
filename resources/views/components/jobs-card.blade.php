@@ -1,6 +1,5 @@
 @props(['job'])
 
-
 <x-card>
     <div class="flex flex-col md:flex-row border-bottom-1">
         <a href="/jobs/{{ $job->id }}">

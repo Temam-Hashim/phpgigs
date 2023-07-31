@@ -87,7 +87,7 @@ class JobController extends Controller
             'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for picture
         ]);
 
-        $formData['user_id'] = auth()->id();
+        $formData['user_id'] = $job->user_id;
         if ($request->hasFile('picture')) {
             $formData['picture'] = $request->file('picture')->store('picture', 'public');
         }
